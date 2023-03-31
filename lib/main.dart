@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
       }
       setState(() {});
     });
-    await Future.delayed(const Duration(seconds: 4));
+    await Future.delayed(const Duration(seconds: 10));
     timer.cancel();
     setState(() {
       isRolling = false;
