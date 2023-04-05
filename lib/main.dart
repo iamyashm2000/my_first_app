@@ -1,7 +1,5 @@
-import 'dart:async';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,35 +13,41 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int value = 1;
+  // int value = 1;
 
-  Random random = Random();
-  bool isRolling = false;
-  rollTheDice() async {
-    setState(() {
-      isRolling = true;
-    });
-    var timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
-      value = random.nextInt(6);
-      if (value == 0) {
-        value = 1;
-      }
-      setState(() {});
-    });
-    await Future.delayed(const Duration(seconds: 10));
-    timer.cancel();
-    setState(() {
-      isRolling = false;
-    });
-    // value = random.nextInt(6);
-    // if (value == 0) {
-    //   rollTheDice();
-    // }
-    // setState(() {});
-    //print(value);
-  }
+  // Random random = Random();
+  // bool isRolling = false;
+  // rollTheDice() async {
+  //   setState(() {
+  //     isRolling = true;
+  //   });
+  //   var timer = Timer.periodic(const Duration(milliseconds: 100), (timer) {
+  //     value = random.nextInt(6);
+  //     if (value == 0) {
+  //       value = 1;
+  //     }
+  //     setState(() {});
+  //   });
+  //   await Future.delayed(const Duration(seconds: 3));
+  //   timer.cancel();
+  //   setState(() {
+  //     isRolling = false;
+  //   });
+  //   // value = random.nextInt(6);
+  //   // if (value == 0) {
+  //   //   rollTheDice();
+  //   // }
+  //   // setState(() {});
+  //   //print(value);
+  // }
 
   // Camel Casing
+
+  // playAudio() async {
+  //   AudioPlayer player = await AudioPlayer();
+  //   player.play(AssetSource('assets/audio/1.mp3'));
+  // }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -51,34 +55,73 @@ class _MyAppState extends State<MyApp> {
         backgroundColor: Colors.black,
         appBar: AppBar(
           backgroundColor: Colors.black,
-          title: const Text(
-            'Roll The Dice',
-            style: TextStyle(
-              fontSize: 25,
-            ),
-          ),
+          title: Text('Xylophone',
+              style: GoogleFonts.pacifico(color: Colors.teal, fontSize: 30)),
         ),
         body: Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text(
-              isRolling ? "Rolling Dice" : "Value you got is $value",
-              style: const TextStyle(color: Colors.white, fontSize: 30),
+          children: const [
+            Node(
+              color: Colors.red,
             ),
-            TextButton(
-              onPressed: () {
-                rollTheDice();
-              },
-              child: Image(
-                image: AssetImage('assets/images/$value.png'),
-                height: 250,
-                width: 250,
-              ),
+            Node(
+              color: Colors.orange,
+            ),
+            Node(
+              color: Colors.yellow,
+            ),
+            Node(
+              color: Colors.green,
+            ),
+            Node(
+              color: Colors.lightBlue,
+            ),
+            Node(
+              color: Colors.blue,
+            ),
+            Node(
+              color: Colors.indigo,
             ),
           ],
         )),
       ),
+    );
+  }
+}
+
+class Node extends StatelessWidget {
+  const Node({super.key, required this.color});
+
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Container(
+          color: color,
+          height: 80,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Container(
+              decoration: const BoxDecoration(
+                  color: Colors.black, shape: BoxShape.circle),
+              width: 30,
+              height: 30,
+            ),
+            Container(
+              decoration: const BoxDecoration(
+                  color: Colors.black, shape: BoxShape.circle),
+              width: 30,
+              height: 30,
+            )
+          ],
+        )
+      ],
     );
   }
 }
@@ -91,3 +134,10 @@ class _MyAppState extends State<MyApp> {
 // 2 Types of Widget
 // Stateless Widget -> Movement Changes
 // Stateful Widget  -> User Interaction -> Changes
+
+
+// git init -> Initialize the repository
+// git add . -> To Stage or Add All the changes
+// git push -> To send file to remote
+// git pull -> To Fetch the changes
+
